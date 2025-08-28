@@ -1,0 +1,22 @@
+import { describe, it, expect } from 'vitest';
+import MockAdapter from 'axios-mock-adapter';
+import { api } from './api';
+import axiosClient from './api';
+
+describe('axiosClient suite', () => {
+  const mock = new MockAdapter(axiosClient); 
+
+  it('should GET data', async () => {
+    mock.onGet('/test').reply(200, { message: 'ok' });
+
+    const result = await api.get<{ message: string }>('/test');
+    expect(result.message).toBe('ok');
+  });
+
+  it('should POST data', async () => {
+    mock.onPost('/submit').reply(201, { success: true });
+
+    const result = await api.post<{ success: boolean }>('/submit', { foo: 'bar' });
+    expect(result.success).toBe(true);
+  });
+});
