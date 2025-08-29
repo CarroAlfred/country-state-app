@@ -1,7 +1,7 @@
-import { vi, describe, it, expect, type Mock, beforeEach } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import { CountryServicesApi } from './country-services';
 import { api } from '../services/api';
-
+import type { Mock } from 'vitest';
 vi.mock('../services/api.ts', () => ({
   api: {
     get: vi.fn(),
@@ -9,9 +9,6 @@ vi.mock('../services/api.ts', () => ({
 }));
 
 describe('country service suite', () => {
-   beforeEach(() => {
-    vi.clearAllMocks();
-  });
   describe('getCountry List suite', () => {
     it('should fetch country list (success)', async () => {
       const mockData = [{ id: 1, name: 'Philippines' }];

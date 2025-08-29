@@ -8,7 +8,7 @@ import { createWrapper } from '../../../utils';
 vi.mock('../../../api');
 
 describe('useGetCountries suite', () => {
-   beforeEach(() => {
+  beforeEach(() => {
     vi.clearAllMocks();
   });
   it('should fetch countries successfully', async () => {
