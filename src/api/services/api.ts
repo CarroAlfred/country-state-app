@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 

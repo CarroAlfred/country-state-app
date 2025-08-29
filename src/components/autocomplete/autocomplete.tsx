@@ -59,6 +59,7 @@ export function Autocomplete<T extends { id: number | string }>({
         className='autocomplete-input'
         aria-expanded={isOpen}
         aria-autocomplete='list'
+        aria-controls='autocomplete-listbox'
         role='combobox'
       />
 
@@ -68,9 +69,9 @@ export function Autocomplete<T extends { id: number | string }>({
       >
         <FiChevronDown />
       </span>
-
       {isOpen && filtered.length > 0 && (
         <ul
+          id='autocomplete-listbox'
           role='listbox'
           className='autocomplete-list'
         >
@@ -81,10 +82,19 @@ export function Autocomplete<T extends { id: number | string }>({
               <li
                 key={item.id}
                 role='option'
+                aria-selected={value ? item === value : false}
+                tabIndex={0}
                 onClick={() => {
                   onSelect(item);
                   setSearch(String(item[displayKey]));
                   setIsOpen(false);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    onSelect(item);
+                    setSearch(String(item[displayKey]));
+                    setIsOpen(false);
+                  }
                 }}
                 className='autocomplete-option'
               >

@@ -1,1 +1,1 @@
-export * from './use-get-states-details'
+export * from './use-get-states-details';

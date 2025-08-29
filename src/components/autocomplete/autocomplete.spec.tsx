@@ -14,7 +14,7 @@ const mockCountries: Country[] = [
 ];
 
 describe('Autocomplete suite', () => {
-   beforeEach(() => {
+  beforeEach(() => {
     vi.clearAllMocks();
   });
   it('renders input with placeholder', () => {

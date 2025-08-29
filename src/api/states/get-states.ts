@@ -1,7 +1,6 @@
 import type { State } from '../../types';
 import { api } from '../services/api';
 
-
 export class StatesServicesApi {
   /**
    * Get State List base on Country Id.

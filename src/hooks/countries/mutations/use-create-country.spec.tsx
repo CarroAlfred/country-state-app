@@ -11,8 +11,6 @@ vi.mock('../../../api', () => ({
   },
 }));
 
-
-
 describe('useCreateCountry suite', () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -21,7 +19,7 @@ describe('useCreateCountry suite', () => {
   it('should call API and trigger onSuccess', async () => {
     const mockOnSuccess = vi.fn();
     const mockData = { id: 1, value: 'Philippines' };
-    (CountryServicesApi.createCountry as any).mockResolvedValue(mockData);
+    (CountryServicesApi.createCountry as Mock).mockResolvedValue(mockData);
 
     const { result } = renderHook(() => useCreateCountry({ onSuccess: mockOnSuccess }), {
       wrapper: createWrapper(),

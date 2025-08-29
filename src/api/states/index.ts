@@ -1,1 +1,1 @@
-export * from './get-states'
+export * from './get-states';

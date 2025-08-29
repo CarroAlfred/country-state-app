@@ -42,7 +42,14 @@ export function Dropdown({ items, value, onChange, isLoading, placeholder = 'Sel
         className='dropdown-input'
         role='button'
         aria-expanded={isOpen}
+        tabIndex={0}
         onClick={() => setIsOpen((prev) => !prev)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setIsOpen((prev) => !prev);
+          }
+        }}
       >
         {selectedItem ? selectedItem.label : placeholder}
         <span className='dropdown-icon'>
@@ -59,9 +66,18 @@ export function Dropdown({ items, value, onChange, isLoading, placeholder = 'Sel
                 key={item.id}
                 className='dropdown-option'
                 role='option'
+                aria-selected={item.id === value}
+                tabIndex={0}
                 onClick={() => {
                   onChange(item);
                   setIsOpen(false);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onChange(item);
+                    setIsOpen(false);
+                  }
                 }}
               >
                 {item.label}

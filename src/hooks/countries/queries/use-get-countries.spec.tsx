@@ -1,5 +1,4 @@
-import { renderHook } from '@testing-library/react';
-import { waitFor } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { vi, describe, it, expect, type Mock, beforeEach } from 'vitest';
 import { useGetCountries } from './use-get-countries';
 import { CountryServicesApi } from '../../../api';

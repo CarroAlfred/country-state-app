@@ -4,5 +4,4 @@ export namespace State {
     id: number;
     value: string;
   }
-
 }

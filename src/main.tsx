@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ErrorBoundary fallback={<div>Something went wrong. Please try again later.</div>}>
-        <Suspense fallback={<div>Loading...</div>}> 
+        <Suspense fallback={<div>Loading...</div>}>
           <AppRouter />
         </Suspense>
       </ErrorBoundary>

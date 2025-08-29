@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import MockAdapter from 'axios-mock-adapter';
-import { api } from './api';
-import axiosClient from './api';
+import axiosClient, { api } from './api';
 
 describe('axiosClient suite', () => {
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CountryPage } from '../pages'; 
+import { CountryPage } from '../pages';
 
 export const AppRouter = () => {
   return (

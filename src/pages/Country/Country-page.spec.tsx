@@ -18,14 +18,14 @@ describe('CountryPag suite', () => {
     vi.spyOn(hooks, 'useGetCountries').mockReturnValue({
       data: mockCountries,
       isLoading: false,
-    } as any);
+    } as ReturnType<typeof hooks.useGetCountries>);
 
     vi.spyOn(hooks, 'useGetStatesDetails').mockImplementation(
       ({ id }) =>
         ({
           data: id === 1 ? mockStatesPH : [],
           isLoading: false,
-        }) as any,
+        }) as ReturnType<typeof hooks.useGetStatesDetails>,
     );
   });
 

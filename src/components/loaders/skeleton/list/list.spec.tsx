@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { SkeletonList } from './list';
 
 describe('SkeletonList suite', () => {
-     beforeEach(() => {
+  beforeEach(() => {
     vi.clearAllMocks();
   });
   it('renders the default number of skeleton items', () => {
