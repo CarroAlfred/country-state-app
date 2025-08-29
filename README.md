@@ -14,6 +14,7 @@
 10. [Testing](#testing)
 11. [Linting & Formatting](#linting--formatting)
 12. [Build & Production](#build--production)
+13. [Environment Variables](#environment--variables)
 
 ---
 
@@ -241,6 +242,8 @@ yarn build
 
 - Output located in `dist/`.
 - Includes hashed CSS and JS for caching.
+
+## Environment Variables
 
 ```env
 VITE_API_BASE_URL=https://your-api-url.com
