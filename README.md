@@ -110,6 +110,20 @@ yarn dev
 yarn build
 ```
 
+## Environment Variables
+
+### NOTE: ADD THE .ENV VARIABLES FIRST BEFORE RUNNING IN YOUR LOCAL
+
+```env
+VITE_API_BASE_URL=https://your-api-url.com
+VITE_API_KEY=x-api-key (sample)
+```
+
+- `VITE_API_BASE_URL`: Base URL for your backend API.
+- `VITE_API_KEY`: X-API-KEY for you backend headers.
+
+---
+
 ---
 
 ## Core Features
@@ -241,15 +255,3 @@ yarn build
 
 - Output located in `dist/`.
 - Includes hashed CSS and JS for caching.
-
-## Environment Variables
-
-```env
-VITE_API_BASE_URL=https://your-api-url.com
-VITE_API_KEY=x-api-key (sample)
-```
-
-- `VITE_API_BASE_URL`: Base URL for your backend API.
-- `VITE_API_KEY`: X-API-KEY for you backend headers.
-
----
