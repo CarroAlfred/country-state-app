@@ -75,8 +75,20 @@ src/
 
 1. Clone the repository:
 
+\*_via ssh_
+
 ```bash
-git clone <repo-url>
+git clone git@github.com:CarroAlfred/country-state-app.git
+cd country-state-app
+
+```
+
+or
+
+\*_via http_
+
+```bash
+git clone https://github.com/CarroAlfred/country-state-app.git
 cd country-state-app
 ```
 
@@ -229,5 +241,13 @@ yarn build
 
 - Output located in `dist/`.
 - Includes hashed CSS and JS for caching.
+
+```env
+VITE_API_BASE_URL=https://your-api-url.com
+VITE_API_KEY=x-api-key (sample)
+```
+
+- `VITE_API_BASE_URL`: Base URL for your backend API.
+- `VITE_API_KEY`: X-API-KEY for you backend headers.
 
 ---
