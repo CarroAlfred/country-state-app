@@ -14,7 +14,6 @@
 10. [Testing](#testing)
 11. [Linting & Formatting](#linting--formatting)
 12. [Build & Production](#build--production)
-13. [Environment Variables](#environment--variables)
 
 ---
 
