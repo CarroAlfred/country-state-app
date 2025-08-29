@@ -1,8 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Container } from './contrainer';
 
-describe('Container component', () => {
+describe('Container component suite', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
   it('renders children correctly', () => {
     render(
       <Container>

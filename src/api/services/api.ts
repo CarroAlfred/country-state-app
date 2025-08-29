@@ -13,7 +13,7 @@ const axiosClient: AxiosInstance = axios.create({
   timeout: 10000,
 });
 
-// 🔄 Request Interceptor
+//  Request Interceptor
 axiosClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // Example: attach token if available
@@ -27,7 +27,7 @@ axiosClient.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// 🔄 Response Interceptor
+// Response Interceptor
 axiosClient.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error) => {
@@ -42,7 +42,6 @@ axiosClient.interceptors.response.use(
   },
 );
 
-// ✅ REST helpers (optional but clean)
 export const api = {
   get: <T>(url: string, config?: AxiosRequestConfig) => axiosClient.get<T>(url, config).then((res) => res.data),
 

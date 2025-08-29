@@ -1,12 +1,15 @@
 import './styles.css';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { SkeletonList } from '../loaders';
 
 interface AutocompleteProps<T> {
   items: T[];
   displayKey: keyof T;
   onSelect: (item: T) => void;
   placeholder?: string;
+  isLoading?: boolean;
+  value?: T;
 }
 
 export function Autocomplete<T extends { id: number | string }>({
@@ -14,6 +17,8 @@ export function Autocomplete<T extends { id: number | string }>({
   displayKey,
   onSelect,
   placeholder = 'Search...',
+  isLoading,
+  value,
 }: AutocompleteProps<T>) {
   const [search, setSearch] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +40,8 @@ export function Autocomplete<T extends { id: number | string }>({
     return items.filter((item) => String(item[displayKey]).toLowerCase().includes(search.toLowerCase()));
   }, [items, search, displayKey]);
 
+  const selectedItem = items.find((item) => item === value);
+
   return (
     <div
       ref={containerRef}
@@ -43,7 +50,7 @@ export function Autocomplete<T extends { id: number | string }>({
       <input
         type='text'
         placeholder={placeholder}
-        value={search}
+        value={value ? String(selectedItem?.[displayKey]) : search}
         onFocus={() => setIsOpen(true)}
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={(e) => {
@@ -67,20 +74,24 @@ export function Autocomplete<T extends { id: number | string }>({
           role='listbox'
           className='autocomplete-list'
         >
-          {filtered.map((item) => (
-            <li
-              key={item.id}
-              role='option'
-              onClick={() => {
-                onSelect(item);
-                setSearch(String(item[displayKey]));
-                setIsOpen(false);
-              }}
-              className='autocomplete-option'
-            >
-              {String(item[displayKey])}
-            </li>
-          ))}
+          {isLoading ? (
+            <SkeletonList count={3} />
+          ) : (
+            filtered.map((item) => (
+              <li
+                key={item.id}
+                role='option'
+                onClick={() => {
+                  onSelect(item);
+                  setSearch(String(item[displayKey]));
+                  setIsOpen(false);
+                }}
+                className='autocomplete-option'
+              >
+                {String(item[displayKey])}
+              </li>
+            ))
+          )}
         </ul>
       )}
 

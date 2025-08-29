@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Autocomplete } from './autocomplete';
 
@@ -13,7 +13,10 @@ const mockCountries: Country[] = [
   { id: 3, value: 'Malaysia' },
 ];
 
-describe('Autocomplete', () => {
+describe('Autocomplete suite', () => {
+   beforeEach(() => {
+    vi.clearAllMocks();
+  });
   it('renders input with placeholder', () => {
     render(
       <Autocomplete

@@ -1,22 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import './styles.css';
+import { SkeletonList } from '../loaders';
 
-interface DropdownItem<T> {
+interface DropdownItem {
   id: number | string;
   label: string;
-  value: T;
 }
 
-interface DropdownProps<T> {
-  items: DropdownItem<T>[];
-  value?: T;
-  onChange: (item: DropdownItem<T>) => void;
+interface DropdownProps {
+  items: DropdownItem[];
+  value?: number | string;
+  onChange: (item: DropdownItem) => void;
   placeholder?: string;
-  disabled?: boolean;
+  isLoading?: boolean;
 }
 
-export function Dropdown<T>({ items, value, onChange, disabled, placeholder = 'Select...' }: DropdownProps<T>) {
+export function Dropdown({ items, value, onChange, isLoading, placeholder = 'Select...' }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -31,12 +31,12 @@ export function Dropdown<T>({ items, value, onChange, disabled, placeholder = 'S
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const selectedItem = items.find((item) => item.value === value);
+  const selectedItem = items.find((item: DropdownItem) => item.id === value);
 
   return (
     <div
       ref={containerRef}
-      className={`autocomplete ${disabled ? 'autocomplete-disabled' : ''}`}
+      className={`dropdown ${isLoading ? 'dropdown-disabled' : ''}`}
     >
       <div
         className='dropdown-input'
@@ -49,22 +49,25 @@ export function Dropdown<T>({ items, value, onChange, disabled, placeholder = 'S
           <FiChevronDown />
         </span>
       </div>
-
       {isOpen && (
         <ul className='dropdown-list'>
-          {items.map((item) => (
-            <li
-              key={item.id}
-              className='dropdown-option'
-              role='option'
-              onClick={() => {
-                onChange(item);
-                setIsOpen(false);
-              }}
-            >
-              {item.label}
-            </li>
-          ))}
+          {isLoading ? (
+            <SkeletonList count={3} />
+          ) : (
+            items.map((item: DropdownItem) => (
+              <li
+                key={item.id}
+                className='dropdown-option'
+                role='option'
+                onClick={() => {
+                  onChange(item);
+                  setIsOpen(false);
+                }}
+              >
+                {item.label}
+              </li>
+            ))
+          )}
         </ul>
       )}
 

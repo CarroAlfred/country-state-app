@@ -1,10 +1,14 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import MockAdapter from 'axios-mock-adapter';
 import { api } from './api';
 import axiosClient from './api';
 
 describe('axiosClient suite', () => {
-  const mock = new MockAdapter(axiosClient); 
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  const mock = new MockAdapter(axiosClient);
 
   it('should GET data', async () => {
     mock.onGet('/test').reply(200, { message: 'ok' });
